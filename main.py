@@ -46,7 +46,7 @@ def predict_output(gender, married, depend, edu, selfemp, app, coapp, loan, loan
     missing_cols=set(X.columns)-set(newdf.columns)
     for i in missing_cols:
         newdf[i]=0
-    newdf=newdf[X_train.columns]
+    newdf=newdf[X.columns]
     new_prediction=rfc.predict(newdf)
     if(new_prediction[0]=='Y'):
         return "Y"
