@@ -53,6 +53,9 @@ def predict_output(gender, married, depend, edu, selfemp, app, coapp, loan, loan
     else:
         return "N"
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 
 @app.post("/api/predict-loan")
 async def predict_loan(data : request_body):   
