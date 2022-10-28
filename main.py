@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from fastapi.encoders import jsonable_encoder
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
@@ -64,13 +63,8 @@ def predict_output(gender, married, depend, edu, selfemp, app, coapp, loan, loan
     else:
         return "N"
 
-    
-@app.get("/")
-def read_root():
-    return {"msg": "this is the backend of project"}
-    
-@app.post("/check")
-async def predict_loan(result : request_body):   
+@app.post("/")
+async def predict_loan(data : request_body):   
     return {
-        "result": predict_output(data.gender, data.married, data.depend, data.edu, data.selfemp, data.app, data.coapp, data.loan, data.loanterm, data.credit, data.prop)
+        "Result": predict_output(data.gender, data.married, data.depend, data.edu, data.selfemp, data.app, data.coapp, data.loan, data.loanterm, data.credit, data.prop)
     }
