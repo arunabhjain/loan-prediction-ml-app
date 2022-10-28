@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-
+from fastapi.encoders import jsonable_encoder
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
@@ -69,6 +69,6 @@ def read_root():
     
 @app.post("/api/predict-loan")
 async def predict_loan(data : request_body):   
-    return {
+    return jsonable_encoder{
         "data": predict_output(data.gender, data.married, data.depend, data.edu, data.selfemp, data.app, data.coapp, data.loan, data.loanterm, data.credit, data.prop)
     }
