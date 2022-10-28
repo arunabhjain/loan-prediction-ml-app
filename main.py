@@ -65,7 +65,11 @@ def predict_output(gender, married, depend, edu, selfemp, app, coapp, loan, loan
         return "N"
 
     
-@app.post("/")
+@app.get("/")
+def read_root():
+    return {"msg": "this is the backend of project"}
+    
+@app.post("/check")
 async def predict_loan(result : request_body):   
     return {
         "result": predict_output(data.gender, data.married, data.depend, data.edu, data.selfemp, data.app, data.coapp, data.loan, data.loanterm, data.credit, data.prop)
