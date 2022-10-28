@@ -4,8 +4,17 @@ from pydantic import BaseModel
 import pandas as pd
 import numpy as np
 from sklearn.ensemble import RandomForestClassifier
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class request_body(BaseModel):
     gender:object
